@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOCUMENTED, DENIED, DERELICT | BusinessDay Investigation</title>
+    
+    <!-- External Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-white">
+
+    <!-- HEADER -->
+    <header class="fixed top-0 left-0 w-full h-[52px] bg-black z-50 flex items-center justify-between px-6 md:px-12 border-b border-zinc-800">
+        <!-- Logo -->
+        <div class="h-8">
+            <img src="images/businessday-logo.svg" alt="BusinessDay" class="h-full w-auto" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="text-white font-bold tracking-tighter text-xl uppercase hidden">BusinessDay</div>
+        </div>
+        
+        <!-- Share Icons -->
+        <div class="flex items-center gap-4">
+            <span class="text-zinc-500 text-xs mono uppercase tracking-wider hidden md:inline">Share</span>
+            <a href="#" id="share-twitter" class="w-5 h-5 opacity-60 hover:opacity-100 transition-opacity" aria-label="Share on Twitter">
+                <img src="images/X.svg" alt="Twitter" class="w-full h-full" onerror="this.outerHTML='<div class=\'w-5 h-5 bg-zinc-700 rounded\'></div>';">
+            </a>
+            <a href="#" id="share-facebook" class="w-5 h-5 opacity-60 hover:opacity-100 transition-opacity" aria-label="Share on Facebook">
+                <img src="images/facebook.svg" alt="Facebook" class="w-full h-full" onerror="this.outerHTML='<div class=\'w-5 h-5 bg-zinc-700 rounded\'></div>';">
+            </a>
+            <a href="#" id="share-linkedin" class="w-5 h-5 opacity-60 hover:opacity-100 transition-opacity" aria-label="Share on LinkedIn">
+                <img src="images/linkedin.svg" alt="LinkedIn" class="w-full h-full" onerror="this.outerHTML='<div class=\'w-5 h-5 bg-zinc-700 rounded\'></div>';">
+            </a>
+            <button id="footer-share-whatsapp" class="w-5 h-5 opacity-60 hover:opacity-100 transition-opacity" aria-label="Share on WhatsApp">
+                <img src="images/whatsapp-icon.svg" alt="WhatsApp" class="w-full h-full" onerror="this.outerHTML='<div class=\'w-5 h-5 bg-zinc-700 rounded\'></div>';">
+            </button>
+        </div>
+    </header>
+
+    <!-- TITLE REVEAL (FIRST) -->
+    <section id="title-block" class="relative z-20 min-h-screen flex flex-col items-center justify-center px-6 py-24 border-b border-zinc-900">
+        <div class="absolute inset-0 pointer-events-none">
+            <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/60 to-black"></div>
+            <div class="absolute inset-0 opacity-[0.09] bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.35),transparent_45%),radial-gradient(circle_at_85%_40%,rgba(255,0,0,0.25),transparent_55%)]"></div>
+        </div>
+
+        <div class="relative max-w-[920px] text-center" id="title-content">
+            <p class="mono text-[10px] md:text-xs uppercase tracking-[0.28em] text-red-400 mb-6">BusinessDay / Visual Investigation</p>
+            <h1 class="editorial-title text-5xl md:text-7xl lg:text-8xl mb-8 tracking-tighter uppercase font-black leading-[0.95] text-white">Documented, Denied, Derelict</h1>
+            <p class="text-lg md:text-2xl text-zinc-200 leading-snug mb-10">Mapping 25 years of the Nigerian Army's extrajudicial killings without justice.</p>
+            <div class="flex flex-col items-center gap-2">
+                <div class="w-12 h-[1px] bg-white/80 mb-2"></div>
+                <p class="mono text-xs uppercase tracking-[0.2em] font-bold text-zinc-200">Ibraheem Alawode . 13 January, 2025</p>
+            </div>
+            <div class="mt-14 flex items-center justify-center gap-4 text-zinc-300/70 mono text-[10px] uppercase tracking-[0.22em]">
+                <span class="inline-flex items-center gap-2"><span class="w-2 h-2 bg-red-600 rounded-full"></span>Scroll to begin</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAP-LEDE SECTION -->
+    <section id="map-lede" class="relative bg-black">
+        <div class="map-container flex items-center justify-end pr-10 md:pr-14">
+            <!-- D3 Map Container -->
+            <div id="d3-map" class="w-full h-full max-w-5xl opacity-40 map-shift"></div>
+
+            <!-- Overlay Incident Card -->
+            <div class="absolute left-6 md:left-10 bottom-24 w-[92vw] max-w-[560px] z-20 pointer-events-none" id="incident-display">
+                <div class="incident-card p-7 md:p-8 text-white opacity-0 transform translate-y-3 transition-all duration-500">
+                    <div class="mono text-[10px] uppercase text-red-400 mb-3 tracking-[0.25em]" id="inc-meta">Incident 01 | Odi, Bayelsa | 1999</div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-6 items-start">
+                        <div>
+                            <h3 class="text-2xl md:text-3xl font-bold leading-tight" id="inc-title">Odi Massacre</h3>
+                            <p class="text-sm md:text-base text-zinc-300 leading-relaxed mt-3" id="inc-desc">A full-scale military reprisal flattened the riverside community.</p>
+                        </div>
+
+                        <div class="md:text-right">
+                            <div class="mono text-[10px] uppercase tracking-[0.25em] text-zinc-400">Casualties</div>
+                            <div class="text-4xl md:text-5xl font-black text-red-500 leading-none mt-1" id="inc-casualties">900+</div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 pt-5 border-t border-white/10 flex items-center justify-between gap-4">
+                        <div class="mono text-[10px] uppercase tracking-[0.25em] text-zinc-500">Scroll to reveal the next incident</div>
+                        <div class="mono text-[10px] uppercase tracking-[0.25em] text-zinc-400" id="inc-loc-year">Odi, Bayelsa | 1999</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Global Progress Bar for Incidents -->
+            <div class="absolute bottom-12 left-6 md:left-10 right-6 md:right-10 h-[2px] bg-zinc-800 overflow-hidden">
+                <div id="global-progress" class="h-full bg-red-700 w-0"></div>
+            </div>
+        </div>
+
+        <!-- Scroll Narrative (lede/intro steps) -->
+        <div class="relative z-10">
+            <div class="h-screen flex items-end justify-end px-6 md:px-12 pb-16">
+                <div id="intro-1" class="intro-box w-[92vw] max-w-[520px] text-white text-lg leading-relaxed">
+                    <p>On December 8, 2025, nine women were killed during a protest in Lamurde, followed by a swift military denial that blamed local militias—a claim the survivors vehemently reject.</p>
+                </div>
+            </div>
+
+            <div class="h-screen flex items-center justify-end px-6 md:px-12">
+                <div id="intro-2" class="intro-box w-[92vw] max-w-[520px] text-white text-lg leading-relaxed">
+                    <p>This tragedy is not an isolated event, but the latest entry in a twenty-five-year ledger of scorched-earth operations and shattered communities that spans the Nigerian landscape.</p>
+                </div>
+            </div>
+
+            <div class="h-screen flex items-start justify-end pt-24 md:pt-32 px-6 md:px-12">
+                <div id="intro-3" class="intro-box w-[92vw] max-w-[680px] text-white text-lg leading-relaxed">
+                    <p>While the country celebrates a quarter-century of stable democracy, from the 1999 ruins of Odi to the streets of Lamurde today, these killings remain meticulously documented, consistently denied, and left derelict by a justice system that refuses to act. Across five presidential administrations, the evidence has never been stronger; the accountability has never been weaker and the promise of democratic dividend never arrived for the families left behind.</p>
+                </div>
+            </div>
+
+            <div class="incident-trigger h-screen" data-index="0"></div>
+            <div class="incident-trigger h-screen" data-index="1"></div>
+            <div class="incident-trigger h-screen" data-index="2"></div>
+            <div class="incident-trigger h-screen" data-index="3"></div>
+            <div class="incident-trigger h-screen" data-index="4"></div>
+            <div class="incident-trigger h-screen" data-index="5"></div>
+            <div class="incident-trigger h-screen" data-index="6"></div>
+            <div class="incident-trigger h-screen" data-index="7"></div>
+            <div class="incident-trigger h-screen" data-index="8"></div>
+            <div class="incident-trigger h-screen" data-index="9"></div>
+            <div class="incident-trigger h-screen" data-index="10"></div>
+            <div class="incident-trigger h-screen" data-index="11"></div>
+            <div class="incident-trigger h-screen" data-index="12"></div>
+        </div>
+    </section>
+
+    <!-- FORENSIC RAIL -->
+    <section id="forensic-rail-section" class="relative bg-zinc-100 overflow-hidden">
+        <div class="forensic-rail" id="forensic-rail-container">
+            <!-- Rail cards will be generated by JavaScript -->
+        </div>
+    </section>
+
+    <!-- SYSTEM PATTERNS -->
+    <section id="system-patterns" class="relative bg-white pt-24">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-24">
+            <!-- Left narrative -->
+            <div class="py-24 space-y-[60vh]" id="pattern-texts">
+                <!-- Generated/filled by JS on load to match systemPatterns data -->
+            </div>
+
+            <!-- Right sticky viz -->
+            <div class="sticky top-[52px] h-[calc(100vh-52px)] flex items-center justify-center py-24">
+                <div class="w-full aspect-square bg-zinc-50 border border-zinc-100 flex items-center justify-center relative overflow-hidden" id="pattern-viz-container">
+                    <div id="pattern-viz-1" class="pattern-viz absolute inset-0 flex items-center justify-center transition-all duration-700">
+                        <svg id="d3-bar-chart" class="w-full h-full"></svg>
+                    </div>
+                    <div id="pattern-viz-2" class="pattern-viz absolute inset-0 opacity-0 flex items-center justify-center transition-all duration-700">
+                        <svg id="d3-timeline" class="w-full h-full"></svg>
+                    </div>
+                    <div id="pattern-viz-3" class="pattern-viz absolute inset-0 opacity-0 flex items-center justify-center transition-all duration-700">
+                        <svg id="d3-donut" class="w-full h-full"></svg>
+                    </div>
+                    <div id="pattern-viz-4" class="pattern-viz absolute inset-0 opacity-0 flex items-center justify-center transition-all duration-700">
+                        <svg id="d3-word" class="w-full h-full"></svg>
+                    </div>
+                    <div id="pattern-viz-5" class="pattern-viz absolute inset-0 opacity-0 flex items-center justify-center transition-all duration-700">
+                        <svg id="d3-phrases" class="w-full h-full"></svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LEGAL STATUS & EXPERT VOICES -->
+    <section class="bg-zinc-50 py-32 border-t border-zinc-200">
+        <div class="max-w-2xl mx-auto text-center px-6 mb-32">
+            <h2 class="editorial-title text-4xl mb-6">The Legal Vacuum</h2>
+            <p class="text-zinc-500 italic">Where evidence meets impunity, and documentation disappears into a judicial void.</p>
+        </div>
+
+        <div class="max-w-5xl mx-auto px-6 mb-32">
+            <h3 class="mono text-xs font-bold uppercase tracking-widest text-zinc-400 mb-8">Domestic Legal Action</h3>
+
+            <div class="space-y-8">
+                <div class="bg-white p-8 border border-zinc-200">
+                    <h4 class="text-xl font-bold mb-2">Odi Massacre (1999)</h4>
+                    <p class="text-sm text-zinc-600 mb-4">Federal High Court judgment in favour of Odi community. N37.6 billion compensation ordered (2013).</p>
+                    <p class="text-xs text-zinc-500"><strong>Current Status:</strong> Compensation ordered; zero criminal prosecutions of military personnel.</p>
+                    <a href="https://www.thisdaylive.com/index.php/2013/02/26/court-orders-fg-to-pay-odi-community-n37-6bn/" class="text-xs mono text-blue-600 hover:underline">Court Ruling</a>
+                </div>
+
+                <div class="bg-white p-8 border border-zinc-200">
+                    <h4 class="text-xl font-bold mb-2">Zaria IMN Killings (2015)</h4>
+                    <p class="text-sm text-zinc-600 mb-4">Kaduna State Judicial Commission found Nigerian Army responsible for unlawful killings (2016).</p>
+                    <p class="text-xs text-zinc-500"><strong>Current Status:</strong> Findings accepted; recommendations never implemented federally.</p>
+                    <a href="https://kadunastate.gov.ng/report-of-the-judicial-commission-of-inquiry-into-the-zaria-clashes/" class="text-xs mono text-blue-600 hover:underline">Commission Report</a>
+                </div>
+            </div>
+
+            <h3 class="mono text-xs font-bold uppercase tracking-widest text-zinc-400 mb-8 mt-16">International Legal Status</h3>
+
+            <div class="bg-white p-8 border border-zinc-200">
+                <h4 class="text-xl font-bold mb-2">ICC Preliminary Examination</h4>
+                <p class="text-sm text-zinc-600 mb-4">Examined: Baga, Giwa Barracks, Bama, IPOB-related killings. Classification: Potential war crimes and crimes against humanity.</p>
+                <p class="text-xs text-zinc-500"><strong>Current Status:</strong> Examination concluded 2020. No prosecutions initiated.</p>
+                <a href="https://www.icc-cpi.int/sites/default/files/itemsDocuments/2020-PE-Report.pdf" class="text-xs mono text-blue-600 hover:underline">ICC Report</a>
+            </div>
+        </div>
+
+        <div class="max-w-5xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div>
+                <h3 class="mono text-xs font-bold uppercase tracking-widest text-zinc-400 mb-8">Expert Analysis</h3>
+                <blockquote class="text-lg italic text-zinc-800 leading-relaxed mb-6 border-l-2 border-red-600 pl-6">
+                    "Amnesty International is deeply concerned by rising cases of extrajudicial execution by security agencies of Nigeria. The perpetrators always get away with the crime. This puts the right to life in grave danger nationwide."
+                </blockquote>
+                <cite class="mono text-[10px] text-zinc-400">- Isa Sanusi, Spokesperson, Amnesty International Nigeria</cite>
+            </div>
+
+            <div class="pt-12 md:pt-0">
+                <blockquote class="text-lg italic text-zinc-800 leading-relaxed mb-6 border-l-2 border-red-600 pl-6">
+                    "The security forces have been getting away with something like this because no one has been able to hold them accountable. Most times when the military investigates serious cases of human rights abuses, we don't see enough outcome to warrant confidence."
+                </blockquote>
+                <cite class="mono text-[10px] text-zinc-400">- Malik Samuel, Good Governance Africa</cite>
+            </div>
+        </div>
+
+        <div class="max-w-3xl mx-auto px-6 mt-32">
+            <div class="border-t-4 border-zinc-900 p-12 bg-zinc-100">
+                <h3 class="mono text-sm font-bold uppercase mb-8 tracking-widest">Official Military Response</h3>
+                <div class="space-y-6 text-zinc-600 text-sm leading-relaxed font-mono">
+                    <p>[Response requested from Nigerian Army Public Relations]</p>
+                    <p class="text-xs text-zinc-400 italic">As of publication, the Nigerian Army has not provided an official response to the specific allegations documented in this investigation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONCLUSION -->
+    <section class="bg-white py-32 border-t border-zinc-200">
+        <div class="max-w-2xl mx-auto px-6 text-center">
+            <h2 class="editorial-title text-4xl mb-8">The Unbroken Pattern</h2>
+            <p class="text-xl leading-relaxed text-zinc-700 mb-6">Twenty-five years and twelve documented incidents reveal an unbroken pattern: disproportionate harm, official denial, and systematic accountability failure.</p>
+            <p class="text-xl leading-relaxed text-zinc-700 mb-6">Thousands of civilian casualties and multiple judicial findings have produced zero military prosecutions, suspended between military operations and political indifference.</p>
+            <p class="text-xl leading-relaxed text-zinc-700">From Odi to Lamurde, the Nigerian state's promise of protection has become a source of terror for its own citizens.</p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer-credits" id="credits">
+        <div class="footer-container">
+            <!-- Title -->
+            <div class="footer-title">
+                <h3>Methodology & Transparency</h3>
+                <p class="footer-subtitle">
+                    This investigation follows open-source intelligence (OSINT) protocols and 
+                    focuses exclusively on Nigeria Army operations from 1999–2025.
+                </p>
+            </div>
+            
+            <!-- Multi-column content -->
+            <div class="footer-content">
+                <!-- Column 1: Data Sources -->
+                <div class="footer-column">
+                    <h4>Primary Data Sources</h4>
+                    <ul class="source-list">
+                        <li>Amnesty International Nigeria Reports (2000–2025)</li>
+                        <li>Human Rights Watch Publications and Investigations</li>
+                        <li>Premium Times Investigative Reports Archive</li>
+                        <li>The Cable Fact-Check Database</li>
+                        <li>International Crisis Group Nigeria Analyses</li>
+                        <li>UN Office for the Coordination of Humanitarian Affairs Data</li>
+                        <li>Satellite Imagery: Google Earth Pro, Maxar, Planet Labs</li>
+                    </ul>
+                </div>
+                
+                <!-- Column 2: Methodology -->
+                <div class="footer-column">
+                    <h4>Investigation Methodology</h4>
+                    <ul class="methodology-list">
+                        <li>Map includes only incidents where latitude/longitude was confirmed from open-source records and verified through multiple sources.</li>
+                        <li>Forensic Analysis combines satellite OSINT and verified NGO reporting as against official narratives.</li>
+                        <li>Victim numbers sourced from Amnesty International, Human Rights Watch and press investigations with cross-verification.</li>
+                        <li>Incidents before 1999 and those involving non-Army security forces (Navy, Airforce) are excluded from this investigation.</li>
+                    </ul>
+                </div>
+                
+                <!-- Column 3: Limitations & Credits -->
+                <div class="footer-column">
+                    <h4>Investigation Scope & Limitations</h4>
+                    <ul class="limitations-list">
+                        <li>This investigation focuses exclusively on Nigeria Army operations; incidents involving Navy or Airforce are excluded</li>
+                        <li>Victim counts represent documented cases; actual numbers may be higher due to underreporting</li>
+                        <li>Remote locations with limited access may have incomplete evidence</li>
+                        <li>Some incidents lack verifiable satellite imagery due to cloud cover or resolution constraints</li>
+                        <li>Military operational details are classified; analysis relies on open-source evidence</li>
+                    </ul>
+                    
+                    <h4>Credits</h4>
+                    <div class="credits-list">
+                        <div class="credit-item">Data Analysis, Forensic Reporting, Visual Design & Development: Ibraheem Alawode</div>
+                        <div class="credit-item">Editing & Editorial Oversight: Lukman Abolade</div>
+                        <div class="credit-item">Methodology Review: BusinessDay Investigations Desk</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Share section -->
+            <div class="share-section">
+                <div class="share-label">Share this investigation:</div>
+                <div class="share-buttons">
+                    <button id="footer-share-twitter" class="share-button twitter" aria-label="Share on Twitter">
+                        <img src="images/twitter-icon.svg" alt="Twitter" width="18" height="18" class="brightness-90" onerror="this.style.display='none';">
+                        <span>Twitter</span>
+                    </button>
+                    
+                    <button id="footer-share-whatsapp" class="share-button whatsapp" aria-label="Share on WhatsApp">
+                        <img src="images/whatsapp-icon.svg" alt="WhatsApp" width="18" height="18" class="brightness-90" onerror="this.style.display='none';">
+                        <span>WhatsApp</span>
+                    </button>
+                    
+                    <button id="footer-share-facebook" class="share-button facebook" aria-label="Share on Facebook">
+                        <img src="images/facebook-icon.svg" alt="Facebook" width="18" height="18" class="brightness-90" onerror="this.style.display='none';">
+                        <span>Facebook</span>
+                    </button>
+                    
+                    <button id="footer-share-linkedin" class="share-button linkedin" aria-label="Share on LinkedIn">
+                        <img src="images/linkedin-icon.svg" alt="LinkedIn" width="18" height="18" class="brightness-90" onerror="this.style.display='none';">
+                        <span>LinkedIn</span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Copyright & Brand -->
+            <div class="copyright">
+                <div class="copyright-content">
+                    <div class="brand-logo">
+                        <img src="images/businessday-logo.svg" alt="BusinessDay" class="bd-logo" onerror="this.style.display='none';">
+                    </div>
+                    <div class="copyright-text">
+                        <p>&copy; <span id="footer-year">2025</span> BusinessDay. All rights reserved.</p>
+                        <p class="disclaimer">
+                            This investigation is based on verifiable open-source evidence focusing on Nigeria Army operations (1999–2025). 
+                            Forensic Analysis combines satellite imagery, human right public accounts, and cross-referenced documentation.
+                        </p>
+                        <p class="investigation-note">
+                            Investigation by BusinessDay Investigations Desk
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="scripts.js"></script>
+</body>
+</html>
