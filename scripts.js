@@ -220,8 +220,8 @@ const FORENSIC_CASES = [
         title: "Benue Cluster — Zaki-Biam / Vaase (2001)",
         location: "Zaki-Biam, Vaase, Gbeji, Benue State",
         casualties: 200,
-        before: "/images/forensic/zakibiam-before.jpg",
-        after: "/images/forensic/zakibiam-after.jpg",
+        before: "/images/forensic/zaki-biam-before.jpg",
+        after: "/images/forensic/zaki-biam-after.jpg",
         summary: "Over 200 unarmed civilians killed. Villagers assembled for 'peace meetings' then executed. Homes systematically burned across multiple communities.",
         official: "Lawful operation following killing of 19 soldiers. Targeted 'militants' and 'troublemakers'. Denied deliberate civilian targeting.",
         evidence: "Villagers assembled for 'peace meetings' then executed. Over 200 unarmed civilians killed. Homes systematically burned across multiple communities. Witness testimony of planned executions.",
@@ -241,7 +241,7 @@ const FORENSIC_CASES = [
         location: "Baga, Kukawa LGA, Borno State",
         casualties: 185,
         before: "/images/forensic/baga-before.png",
-        after: "/images/forensic/baga-after.png",
+        after: "/images/forensic/baga-after.jpg",
         summary: "185+ civilian deaths. 2,300+ buildings destroyed. Satellite-era evidence contradicts official narrative.",
         official: "Operation against Boko Haram militants. Claimed only militants targeted. Minimal civilian damage asserted.",
         evidence: "Satellite imagery shows 2,300+ buildings destroyed. Scorch patterns inside residential grid, not combat zones. Fishermen and traders among the dead. Local accounts contradict official timeline.",
@@ -260,8 +260,8 @@ const FORENSIC_CASES = [
         title: "Giwa Barracks — Maiduguri (2014)",
         location: "Giwa Barracks, Maiduguri, Borno State",
         casualties: 640,
-        before: "/images/facts/giwa-before.jpg",
-        after: "/images/facts/giwa-after.jpg",
+        before: "/images/forensic/giwa-before.png",
+        after: "/images/forensic/giwa-after.png",
         summary: "640+ recaptured detainees executed. Video evidence verified showing summary executions. Systematic killing under custody.",
         official: "Detainees were 'hardcore terrorists'. Denied extrajudicial executions. Claimed detainees died in crossfire.",
         evidence: "Amnesty documented 640+ recaptured detainees executed. Video evidence verified showing summary executions. Bodies dumped in mass piles visible in satellite imagery. Survivor testimonies of systematic killings.",
@@ -293,66 +293,7 @@ const FORENSIC_CASES = [
         ],
         bgColor: "bg-white"
     },
-    {
-        id: "zaria-imn-2015",
-        type: "case",
-        year: 2015,
-        title: "Zaria IMN — Kaduna (2015)",
-        location: "Zaria, Kaduna State",
-        casualties: 300,
-        before: "/images/facts/zaria-before.png",
-        after: "/images/facts/zaria-after.png",
-        summary: "300+ killed despite official claim of 7 fatalities. Mass graves discovered and verified. Systematic denial despite judicial findings.",
-        official: "Protesters resisted arrest. Only 7 fatalities claimed. Operation described as 'law enforcement'.",
-        evidence: "Judicial inquiry documented 300+ killed. Mass graves discovered and verified. Satellite analysis shows trench burials. Hospital records show overwhelming casualties.",
-        sources: [
-            { text: "Kaduna State Judicial Commission of Inquiry Report", url: "https://kadunastate.gov.ng/wp-content/uploads/2016/08/Report-of-the-Judicial-Commission-of-Inquiry-into-the-Zaria-Clashes.pdf" },
-            { text: "Amnesty International satellite evidence", url: "https://www.amnesty.org/en/latest/news/2016/03/nigeria-zaria-massacre-one-year-on-no-justice-for-shia-mass-killings/" },
-            { text: "Human Rights Watch documentation", url: "https://www.hrw.org/news/2016/03/15/nigeria-massacre-justice-shia-muslims" },
-            { text: "Al Jazeera investigation", url: "https://www.aljazeera.com/news/2016/3/15/nigeria-inquiry-confirms-zaria-mass-killings-by-army" }
-        ],
-        bgColor: "bg-zinc-50"
-    },
-    {
-        id: "izombe-2021",
-        type: "case",
-        year: 2021,
-        title: "Izombe — Imo (2021)",
-        location: "Izombe, Oguta LGA, Imo State",
-        casualties: 10,
-        before: "/images/forensic/izombe-before.jpg",
-        after: "/images/forensic/izombe-after.jpg",
-        summary: "50+ houses systematically burned. 10 civilians killed. Classic reprisal operation pattern repeating 1999 Odi model.",
-        official: "Lawful security response. Targeted militants only. Minimal property damage claimed.",
-        evidence: "50+ houses systematically burned. Residents killed during home invasions. Clear scorch grid visible in satellite imagery. Pattern matches previous reprisal operations.",
-        sources: [
-            { text: "Satellite imagery analysis by SBM Intelligence", url: "https://www.sbmintel.com/2021/06/satellite-imagery-shows-extensive-damage-in-izombe-imo-state-after-military-raid/" },
-            { text: "Premium Times investigation", url: "https://www.premiumtimesng.com/news/headlines/464055-investigation-how-military-burned-50-houses-killed-10-in-imo-community.html" },
-            { text: "The Cable report", url: "https://www.thecable.ng/security-forces-razed-our-homes-south-east-communities-allege" },
-            { text: "International Crisis Group analysis", url: "https://www.crisisgroup.org/africa/west-africa/nigeria/stopping-nigerias-spiralling-farmer-herder-violence" }
-        ],
-        bgColor: "bg-white"
-    },
-    {
-        id: "amangwu-2022",
-        type: "case",
-        year: 2022,
-        title: "Amangwu — Ohafia (2022)",
-        location: "Amangwu, Ohafia LGA, Abia State",
-        casualties: "Multiple",
-        before: "/images/forensic/amangwu-before.jpg",
-        after: "/images/forensic/amangwu-after.jpg",
-        summary: "Homes razed across community. Civilians killed during operation. Modern denial playbook despite satellite evidence.",
-        official: "Search-and-rescue mission for missing officer. No invasion occurred. Denied property destruction.",
-        evidence: "Homes razed across community. Civilians killed during operation. Satellite scorch patterns contradict denial. Residents displaced without compensation.",
-        sources: [
-            { text: "Satellite imagery analysis by Agence France-Presse", url: "https://factcheck.afp.com/http%253A%252F%252Fdoc.afp.com%252F9FE9BS-1" },
-            { text: "Human Rights Watch documentation", url: "https://www.hrw.org/news/2022/07/27/nigerian-security-forces-allegedly-burned-homes-southeastern-community" },
-            { text: "The Guardian Nigeria investigation", url: "https://guardian.ng/news/soldiers-raze-14-houses-kill-two-in-abia-community/" },
-            { text: "BBC Pidgin coverage", url: "https://www.bbc.com/pidgin/articles/cp82pz2p7pjo" }
-        ],
-        bgColor: "bg-zinc-50"
-    },
+    
     {
         id: "lamurde-2025",
         type: "conclusion",
