@@ -445,6 +445,28 @@ function createDrippingDot(index) {
 
     const g = createSVGElement('g', { id: groupId });
     
+    // Create label container in SVG
+    const label = createSVGElement('text', {
+        x: data.x,
+        y: data.y - 25,  // Position above the dot
+        'text-anchor': 'middle',
+        class: 'dot-label-svg'
+    });
+    label.textContent = data.location;
+    label.style.cssText = `
+        font-size: 10px;
+        font-family: 'JetBrains Mono', monospace;
+        fill: white;
+        opacity: 0;
+        pointer-events: none;
+        user-select: none;
+        paint-order: stroke;
+        stroke: rgba(15, 15, 15, 0.9);
+        stroke-width: 8px;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+    `;
+    
     // Pool
     const pool = createSVGElement('circle', {
         cx: data.x, cy: data.y, r: 0,
@@ -474,16 +496,17 @@ function createDrippingDot(index) {
     });
     trail.style.opacity = 0;
 
-    g.append(pool, trail, dot, drip);
+    g.append(label, pool, trail, dot, drip);
     DOM.dotsLayer.appendChild(g);
     
-    AppState.dotGroups.set(groupId, { g, pool, dot, drip, trail });
+    AppState.dotGroups.set(groupId, { g, pool, dot, drip, trail, label });
 
-    // Entrance animation
+    // Entrance animation with label
     const tl = gsap.timeline();
     tl.to(pool, { attr: { r: 34 }, opacity: 0.65, duration: 0.6, ease: "power2.out" })
       .to(pool, { opacity: 0.0, duration: 1.8, ease: "power1.out" }, "+=0.1")
       .to(dot, { attr: { r: 7 }, duration: 0.7, ease: "back.out(2)" }, 0.05)
+      .to(label, { opacity: 0.9, duration: 0.4, ease: "power2.out" }, 0.3)
       .to(trail, { opacity: 0.55, duration: 0.35, ease: "power2.out" }, 0.15);
 
     // Drip loop
