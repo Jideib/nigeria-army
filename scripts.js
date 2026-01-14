@@ -72,21 +72,22 @@ function project(lat, lon) {
 
 // Incident data for map
 const INCIDENTS = [
-    { id: "odi-1999", year: 1999, location: "Odi, Bayelsa", title: "Odi Massacre", casualties: "900+", coords: [6.2717, 4.7969], desc: "A full-scale military reprisal flattened the riverside community." },
-    { id: "zaki-biam-2001", year: 2001, location: "Zaki-Biam, Benue", title: "Zaki-Biam Killings", casualties: "200+", coords: [7.5167, 9.6167], desc: "Villagers assembled for a 'peace meeting' were executed." },
-    { id: "gbeji-2001", year: 2001, location: "Gbeji, Benue", title: "Gbeji Massacre", casualties: "160", coords: [7.4500, 9.6333], desc: "One of multiple Tiv villages raided." },
-    { id: "vaase-2001", year: 2001, location: "Vaase, Benue", title: "Vaase Attack", casualties: "160", coords: [7.3333, 9.5667], desc: "Village invaded, homes burned in reprisal operation." },
+    { id: "odi-1999", year: 1999, location: "Odi, Bayelsa", title: "Odi Massacre", casualties: "900+", coords: [5.1764, 6.2954], desc: "A full-scale military reprisal flattened the riverside community." },
+    { id: "zaki-biam-2001", year: 2001, location: "Zaki-Biam, Benue", title: "Zaki-Biam Killings", casualties: "200+", coords: [7.5833, 9.6167], desc: "Villagers assembled for a 'peace meeting' were executed." },
+    { id: "gbeji-2001", year: 2001, location: "Gbeji, Benue", title: "Gbeji Massacre", casualties: "160", coords: [7.7167, 9.5333], desc: "One of multiple Tiv villages raided." },
+    { id: "vaase-2001", year: 2001, location: "Vaase, Benue", title: "Vaase Attack", casualties: "160", coords: [7.3833, 9.4333], desc: "Village invaded, homes burned in reprisal operation." },
     { id: "jos-2008", year: 2008, location: "Jos, Plateau", title: "Jos Crises", casualties: "47", coords: [9.8965, 8.8583], desc: "Young unarmed Muslim men killed during unrest." },
-    { id: "baga-2013", year: 2013, location: "Baga, Borno", title: "Baga Destruction", casualties: "185+", coords: [13.1200, 13.8500], desc: "Mass destruction after Boko Haram attack, reprisal 'mop-up'." },
-    { id: "bama-2013", year: 2013, location: "Bama, Borno", title: "Bama Executions", casualties: "35", coords: [11.8704, 13.6900], desc: "Mass shooting of detainees after screening for Boko Haram links." },
+    { id: "baga-2013", year: 2013, location: "Baga, Borno", title: "Baga Destruction", casualties: "185+", coords: [13.1167, 13.8500], desc: "Mass destruction after Boko Haram attack, reprisal 'mop-up'." },
+    { id: "bama-2013", year: 2014, location: "Bama, Borno", title: "Bama Executions", casualties: "35", coords: [11.5218, 13.6884], desc: "Mass shooting of detainees after screening for Boko Haram links." },
     { id: "zaria-shia-2014", year: 2014, location: "Zaria, Kaduna", title: "Zaria Shia Killings", casualties: "33", coords: [11.0667, 7.7000], desc: "IMN protesters shot; detainees killed during protest suppression." },
-    { id: "nkpor-2016", year: 2016, location: "Nkpor, Anambra", title: "Nkpor Massacre", casualties: "150+", coords: [6.1500, 6.8000], desc: "Pro-Biafran commemoration massacre, security forces opened fire." },
-    { id: "okporo-2021", year: 2021, location: "Okporo, Imo", title: "Okporo Raid", casualties: "5", coords: [5.7860, 7.0288], desc: "Military raid in ESN zone targeting IPOB/ESN." },
-    { id: "izombe-2021", year: 2021, location: "Izombe, Imo", title: "Izombe Reprisal", casualties: "3", coords: [5.6950, 6.9660], desc: "Reprisal after soldiers killed; 50+ houses burned." },
-    { id: "amangwu-2022", year: 2022, location: "Amangwu, Abia", title: "Amangwu Attack", casualties: "10", coords: [5.6125, 7.8200], desc: "Homes razed; missing soldier trigger for military operation." },
-    { id: "lamurde-2025", year: 2025, location: "Lamurde, Adamawa", title: "Lamurde Killings", casualties: "9", coords: [9.2833, 11.4833], desc: "Nine women shot during protest. Military denies responsibility." }
+    { id: "nkpor-2016", year: 2016, location: "Nkpor, Anambra", title: "Nkpor Massacre", casualties: "150+", coords: [6.1500, 6.8333], desc: "Pro-Biafran commemoration massacre, security forces opened fire." },
+    { id: "okporo-2021", year: 2021, location: "Okporo, Imo", title: "Okporo Raid", casualties: "5", coords: [5.7860, 6.9800], desc: "Military raid in ESN zone targeting IPOB/ESN." },
+    { id: "izombe-2021", year: 2021, location: "Izombe, Imo", title: "Izombe Reprisal", casualties: "3", coords: [5.6262, 6.8691], desc: "Reprisal after soldiers killed; 50+ houses burned." },
+    { id: "amangwu-2022", year: 2022, location: "Amangwu, Abia", title: "Amangwu Attack", casualties: "10", coords: [5.3961, 7.8832], desc: "Homes razed; missing soldier trigger for military operation." },
+    { id: "lamurde-2025", year: 2025, location: "Lamurde, Adamawa", title: "Lamurde Killings", casualties: "9", coords: [9.6000, 11.7833], desc: "Nine women shot during protest. Military denies responsibility." }
 ].map(inc => {
-    const p = project(inc.coords[1], inc.coords[0]);
+    // Ensuring the projection uses [0] as Latitude and [1] as Longitude
+    const p = project(inc.coords[0], inc.coords[1]); 
     return { ...inc, x: p.x, y: p.y };
 });
 
@@ -191,7 +192,7 @@ const FORENSIC_CASES = [
         id: "intro",
         type: "intro",
         title: "The Pattern of Violence",
-        subtitle: "Satellite imagery, witness testimonies from media and human right report, and judicial findings reveal a systematic approach to violence and denial."
+        subtitle: "Satellite imagery, witness testimonies from media and human right reports, and judicial findings reveal a systematic approach to violence and denial."
     },
     {
         id: "odi-1999",
@@ -202,6 +203,10 @@ const FORENSIC_CASES = [
         casualties: 900,
         before: "images/forensic/odi-before.jpg",
         after: "images/forensic/odi-after.jpg",
+        beforeCaption: "Odi village before military operation - August 1999",
+        afterCaption: "Complete destruction after military reprisal - November 1999",
+        imageAnalysis: "Satellite imagery comparison shows near-total destruction of Odi village. Before images show the thermal level of the community, being a riverine community, the blue color shows the natural order of things. After images reveal thermal level changed to red which indicates systematic burning and demolition of buildings and infrastructure.",
+        imageCredits: "Before: Landsat 7 satellite imagery Thermal level, August 1999 / After: Landsat 7 satellite imagery Thermal level, November 1999",
         summary: "900+ civilian deaths. 250+ structures destroyed. The military operation that set the pattern for decades to come.",
         official: "Military operation against militants following killing of police officers",
         evidence: "Satellite imagery shows 250+ structures destroyed. Human Rights Watch documents 900+ civilian deaths. Mass grave identified 2km from village. Journalists documented near-total destruction.",
@@ -222,6 +227,10 @@ const FORENSIC_CASES = [
         casualties: 200,
         before: "images/forensic/zaki-biam-before.jpg",
         after: "images/forensic/zaki-biam-after.jpg",
+        beforeCaption: "Zaki-Biam community before military operation",
+        afterCaption: "Burned structures affected the vegetation area after military operation",
+        imageAnalysis: "Aerial imagery shows multiple Tiv communities systematically targeted. Burn patterns consistent with intentional arson changes vegetation. Satellite imagery reveals widespread destruction across residential areas rather than isolated combat zones. Ground reports confirm mass executions following 'peace meetings'.",
+        imageCredits: "Before: Landsat 7 satellite imagery, October 2001 / After: Landsat 7 satellite imagery, November 2001",
         summary: "Over 200 unarmed civilians killed. Villagers assembled for 'peace meetings' then executed. Homes systematically burned across multiple communities.",
         official: "Lawful operation following killing of 19 soldiers. Targeted 'militants' and 'troublemakers'. Denied deliberate civilian targeting.",
         evidence: "Villagers assembled for 'peace meetings' then executed. Over 200 unarmed civilians killed. Homes systematically burned across multiple communities. Witness testimony of planned executions.",
@@ -242,6 +251,10 @@ const FORENSIC_CASES = [
         casualties: 185,
         before: "images/forensic/baga-before.png",
         after: "images/forensic/baga-after.jpg",
+        beforeCaption: "Baga fishing community before military operations - April 2013",
+        afterCaption: "Mass destruction of Baga after joint military operation - May 2013",
+        imageAnalysis: "High-resolution satellite imagery reveals unprecedented scale of destruction. Approximately 2,300+ buildings destroyed, representing over 70% of structures. Scorch patterns concentrated in residential areas rather than combat zones. Fishing boats and market infrastructure specifically targeted, indicating economic warfare against civilian population.",
+        imageCredits: "Before: Landsat 7 satellite imagery, January 2013 / After: Landsat 7 satellite imagery, April 2013",
         summary: "185+ civilian deaths. 2,300+ buildings destroyed. Satellite-era evidence contradicts official narrative.",
         official: "Operation against Boko Haram militants. Claimed only militants targeted. Minimal civilian damage asserted.",
         evidence: "Satellite imagery shows 2,300+ buildings destroyed. Scorch patterns inside residential grid, not combat zones. Fishermen and traders among the dead. Local accounts contradict official timeline.",
@@ -262,6 +275,10 @@ const FORENSIC_CASES = [
         casualties: 640,
         before: "images/forensic/giwa-before.png",
         after: "images/forensic/giwa-after.png",
+        beforeCaption: "Giwa Barracks detention facility - March 2014",
+        afterCaption: "Evidence of mass executions and body disposal - March 2014",
+        imageAnalysis: "Satellite imagery shows mass grave sites within barracks perimeter. Bodies of victims killed in executions.",
+        imageCredits: "Satellite analysis and images from Amnesty International report",
         summary: "640+ recaptured detainees executed. Video evidence verified showing summary executions. Systematic killing under custody.",
         official: "Detainees were 'hardcore terrorists'. Denied extrajudicial executions. Claimed detainees died in crossfire.",
         evidence: "Amnesty documented 640+ recaptured detainees executed. Video evidence verified showing summary executions. Bodies dumped in mass piles visible in satellite imagery. Survivor testimonies of systematic killings.",
@@ -282,6 +299,10 @@ const FORENSIC_CASES = [
         casualties: "Hundreds",
         before: "images/forensic/bama-before.png",
         after: "images/forensic/bama-after.png",
+        beforeCaption: "Bama town during military screening operation - May 2014",
+        afterCaption: "Bodies of victims killed - June 2014",
+        imageAnalysis: "imagery shows bodies of victims killed during screening operations.",
+        imageCredits: "Amnesty Internation Investigation report",
         summary: "Hundreds of men executed after 'screening'. Mass graves discovered by locals. Screening operations used as cover for executions.",
         official: "Counter-terror screening operation. No civilian casualties reported. Lawful detention of suspects claimed.",
         evidence: "Men rounded up during 'screening' never returned. Residents executed near barracks perimeter. Burn patterns visible in satellite imagery. Mass graves discovered by locals.",
@@ -600,32 +621,65 @@ function generateForensicRail() {
                             <h3 class="text-3xl font-bold mb-4">${caseData.title}</h3>
                             <p class="text-zinc-600 mb-4">${caseData.summary}</p>
                         </div>
+                        
+                        <!-- IMAGE COMPARISON SECTION -->
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                            <figure class="relative overflow-hidden rounded-lg border border-zinc-200 bg-zinc-100 aspect-video">
-                                <img src="${beforeSrc}" alt="Before: ${caseData.location}" class="absolute inset-0 w-full h-full object-cover" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-                                <div class="absolute inset-0 hidden items-center justify-center bg-gradient-to-br from-zinc-100 to-zinc-300">
-                                    <div class="text-center p-4">
-                                        <div class="mono text-[10px] uppercase tracking-widest text-zinc-500 mb-1">Before (missing image)</div>
-                                        <div class="text-xs text-zinc-600">${caseData.location}</div>
-                                    </div>
+                            <!-- BEFORE IMAGE -->
+                            <figure class="relative overflow-hidden rounded-lg border border-zinc-200 bg-zinc-100 aspect-video group">
+                                <div class="relative w-full h-full overflow-hidden">
+                                    <img src="${beforeSrc}" 
+                                        alt="${caseData.beforeCaption}" 
+                                        class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-100"
+                                        loading="lazy"
+                                        style="brightness: 0.95;"
+                                        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                                 </div>
-                                <figcaption class="absolute top-3 left-3 mono text-[10px] uppercase tracking-[0.22em] bg-black/70 text-white px-2 py-1 rounded">Before</figcaption>
+                                <figcaption class="absolute top-3 left-3 mono text-[10px] uppercase tracking-[0.22em] bg-black/80 text-white px-3 py-1.5 rounded transition-all duration-300 group-hover:bg-black group-hover:px-4 z-10">
+                                    ${caseData.beforeCaption}
+                                </figcaption>
+                                <div class="absolute bottom-3 left-3 right-3 text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10">
+                                    Hover to zoom • Click for full size
+                                </div>
                             </figure>
-                            <figure class="relative overflow-hidden rounded-lg border border-zinc-800 bg-zinc-950 aspect-video">
-                                <img src="${afterSrc}" alt="After: ${caseData.location}" class="absolute inset-0 w-full h-full object-cover" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-                                <div class="absolute inset-0 hidden items-center justify-center bg-gradient-to-br from-zinc-800 to-black">
-                                    <div class="text-center p-4">
-                                        <div class="mono text-[10px] uppercase tracking-widest text-red-300 mb-1">After (missing image)</div>
-                                        <div class="text-xs text-zinc-300">${caseData.casualties}+ casualties</div>
-                                    </div>
+                            
+                            <!-- AFTER IMAGE -->
+                            <figure class="relative overflow-hidden rounded-lg border border-zinc-800 bg-zinc-950 aspect-video group">
+                                <div class="relative w-full h-full overflow-hidden">
+                                    <img src="${afterSrc}" 
+                                        alt="${caseData.afterCaption}" 
+                                        class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
+                                        loading="lazy"
+                                        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                                    <div class="absolute inset-0 bg-red-900/20 group-hover:bg-red-900/10 transition-all duration-500"></div>
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                                 </div>
-                                <div class="absolute inset-0 bg-red-900/15"></div>
-                                <figcaption class="absolute top-3 left-3 mono text-[10px] uppercase tracking-[0.22em] bg-red-900/80 text-white px-2 py-1 rounded">After</figcaption>
+                                <figcaption class="absolute top-3 left-3 mono text-[10px] uppercase tracking-[0.22em] bg-red-900/80 text-white px-3 py-1.5 rounded transition-all duration-300 group-hover:bg-red-900 group-hover:px-4 z-10">
+                                    ${caseData.afterCaption}
+                                </figcaption>
+                                <div class="absolute bottom-3 left-3 right-3 text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10">
+                                    Hover to zoom • ${caseData.casualties}+ casualties
+                                </div>
                             </figure>
                         </div>
-                        <div class="border-l-2 border-zinc-900 pl-6 space-y-2">
-                            <p class="text-sm"><strong>Official:</strong> "${caseData.official}"</p>
-                            <p class="text-sm"><strong>Evidence:</strong> ${caseData.evidence}</p>
+                        
+                        <!-- IMAGE EXPLANATION SECTION -->
+                        <div class="mt-8 p-6 bg-zinc-50 border border-zinc-200 rounded-lg">
+                            <h4 class="mono text-xs uppercase tracking-wider text-zinc-600 mb-3">Visual Evidence Analysis</h4>
+                            <p class="text-sm text-zinc-700 leading-relaxed">
+                                ${caseData.imageAnalysis}
+                            </p>
+                            <div class="mt-4 pt-4 border-t border-zinc-300">
+                                <p class="text-xs text-zinc-500">
+                                    <strong>Image Credits:</strong> ${caseData.imageCredits}
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <!-- EVIDENCE SECTION -->
+                        <div class="border-l-2 border-zinc-900 pl-6 space-y-2 mt-8">
+                            <p class="text-sm"><strong>Official Narrative:</strong> "${caseData.official}"</p>
+                            <p class="text-sm"><strong>Documented Evidence:</strong> ${caseData.evidence}</p>
                             <div class="pt-4 space-y-1">
                                 ${caseData.sources.map(s => `<a href="${s.url}" class="text-xs mono text-blue-600 block hover:underline" target="_blank" rel="noopener">${s.text}</a>`).join('')}
                             </div>
@@ -1067,54 +1121,78 @@ function createPhraseMatrix() {
         "denial": "#111827"
     };
     
+    // Calculate optimal layout
     const cols = 2;
-    const cardW = (width - 48) / cols;
-    const cardH = 62;
-    const startX = 24;
-    const startY = 60;
+    const rows = Math.ceil(phrases.length / cols);
+    const padding = 20;
+    const horizontalPadding = 40;
+    const verticalPadding = 60;
+    
+    const availableWidth = width - horizontalPadding * 2;
+    const availableHeight = height - verticalPadding;
+    
+    const cardW = availableWidth / cols - padding;
+    const cardH = availableHeight / rows - padding;
+    
+    const startX = horizontalPadding;
+    const startY = verticalPadding;
+    
+    // Ensure cards don't get too small
+    const minCardHeight = 70;
+    const actualCardH = Math.max(cardH, minCardHeight);
     
     phrases.forEach((phrase, i) => {
         const col = i % cols;
         const row = Math.floor(i / cols);
-        const x = startX + col * cardW;
-        const y = startY + row * (cardH + 14);
+        const x = startX + col * (cardW + padding);
+        const y = startY + row * (actualCardH + padding);
         
-        // Card background
+        // Card background - fill available space
         const cardBg = createSVGElement('rect', {
             x, y,
-            width: cardW - 14, height: cardH,
+            width: cardW, 
+            height: actualCardH,
             rx: 10,
             fill: '#fff',
-            stroke: '#e4e4e7'
+            stroke: '#e4e4e7',
+            'stroke-width': 1.5
         });
         cardBg.style.opacity = 0;
         svg.appendChild(cardBg);
         
         // Category indicator
         const catRect = createSVGElement('rect', {
-            x: x + 14, y: y + 14,
-            width: 8, height: 8,
+            x: x + 16, 
+            y: y + 16,
+            width: 10, 
+            height: 10,
+            rx: 2,
             fill: catColor[phrase.category]
         });
         catRect.style.opacity = 0;
         svg.appendChild(catRect);
         
-        // Phrase text
+        // Phrase text - dynamic font size
         const phraseText = createSVGElement('text', {
-            x: x + 30, y: y + 22
+            x: x + 34, 
+            y: y + 26
         });
-        phraseText.style.cssText = 'font-size: 12px; font-weight: 800; fill: #111827; opacity: 0;';
+        const phraseFontSize = Math.min(14, cardW / 15);
+        phraseText.style.cssText = `font-size: ${phraseFontSize}px; font-weight: 800; fill: #111827; opacity: 0; font-family: 'Inter', sans-serif;`;
         phraseText.textContent = phrase.text;
         svg.appendChild(phraseText);
         
-        // Frequency text
+        // Frequency text - dynamic font size
         const freqText = createSVGElement('text', {
-            x: x + 30, y: y + 44
+            x: x + 34, 
+            y: y + 46
         });
-        freqText.style.cssText = 'font-size: 10px; fill: #71717a; font-family: "JetBrains Mono", monospace; opacity: 0;';
+        const freqFontSize = Math.min(12, cardW / 18);
+        freqText.style.cssText = `font-size: ${freqFontSize}px; fill: #71717a; font-family: 'JetBrains Mono', monospace; opacity: 0;`;
         freqText.textContent = `Frequency: ${phrase.frequency}`;
         svg.appendChild(freqText);
         
+        // Animate entrance
         setTimeout(() => {
             cardBg.style.opacity = 1;
             catRect.style.opacity = 1;
@@ -1122,6 +1200,38 @@ function createPhraseMatrix() {
             freqText.style.opacity = 1;
         }, 120 * i);
     });
+    
+    // Add legend at the bottom if space permits
+    if (height > 500) {
+        const legendY = height - 40;
+        const legend = createSVGElement('g', {
+            transform: `translate(${width / 2 - 100},${legendY})`
+        });
+        svg.appendChild(legend);
+        
+        Object.entries(catColor).forEach(([category, color], i) => {
+            const item = createSVGElement('g', {
+                transform: `translate(${i * 120},0)`
+            });
+            legend.appendChild(item);
+            
+            const rect = createSVGElement('rect', {
+                width: 12, 
+                height: 12,
+                rx: 2,
+                fill: color
+            });
+            item.appendChild(rect);
+            
+            const text = createSVGElement('text', {
+                x: 18, 
+                y: 11
+            });
+            text.style.cssText = 'font-size: 12px; fill: #333; font-family: "Inter", sans-serif;';
+            text.textContent = category;
+            item.appendChild(text);
+        });
+    }
 }
 
 function initSVGCharts() {

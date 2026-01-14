@@ -10,6 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -225,17 +226,82 @@
         </div>
     </section>
 
+        <!-- VIDEO SECTION -->
+    <section id="video-section" class="relative bg-black py-32">
+        <div class="max-w-6xl mx-auto px-6">
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <span class="mono text-red-600 text-xs tracking-widest uppercase mb-4 block">Video Investigation</span>
+                <h2 class="editorial-title text-4xl md:text-5xl text-white mb-6">Watch the Investigation</h2>
+                <p class="text-zinc-400 text-lg max-w-3xl mx-auto">
+                    A visual narrative that traces the 25-year pattern of extrajudicial killings, 
+                    from Odi to Lamurde, through satellite imagery, media report, legal status and forensic analysis.
+                </p>
+            </div>
+
+            <!-- Video Container -->
+            <div class="relative bg-black rounded-xl overflow-hidden shadow-2xl">
+                <!-- Placeholder for YouTube video -->
+                <div id="video-player" class="aspect-video bg-zinc-900 flex items-center justify-center">
+                    <!-- YouTube Video Embed will go here -->
+                    <div class="text-center p-12">
+                        <div class="mb-6">
+                            <div class="w-20 h-20 mx-auto mb-4 flex items-center justify-center bg-red-900/30 rounded-full">
+                                <svg class="w-10 h-10 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </div>
+                            <p class="text-zinc-300 text-lg mb-2">Video Coming Soon</p>
+                            <p class="text-zinc-500 text-sm">
+                                This space is reserved for the documentary video explaining the investigation.
+                                <!-- You can replace this with YouTube embed code:
+                                <iframe width="100%" height="100%" 
+                                        src="https://www.youtube.com/embed/YOUR_VIDEO_ID" 
+                                        frameborder="0" 
+                                        allowfullscreen>
+                                </iframe>
+                                -->
+                            </p>
+                        </div>
+                        <div class="mono text-xs text-zinc-600 uppercase tracking-wider">
+                            Duration: ~15 minutes • Available in HD
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video Details -->
+                <div class="p-8 border-t border-zinc-800">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="space-y-2">
+                            <h4 class="mono text-xs uppercase tracking-wider text-zinc-400">Production</h4>
+                            <p class="text-white">BusinessDay Investigations Desk</p>
+                        </div>
+                        <div class="space-y-2">
+                            <h4 class="mono text-xs uppercase tracking-wider text-zinc-400">Release Date</h4>
+                            <p class="text-white">January 2025</p>
+                        </div>
+                        <div class="space-y-2">
+                            <h4 class="mono text-xs uppercase tracking-wider text-zinc-400">Language</h4>
+                            <p class="text-white">English</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- SYSTEM PATTERNS -->
     <section id="system-patterns" class="relative bg-white pt-24">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-24">
-            <!-- Left narrative -->
-            <div class="py-24 space-y-[60vh]" id="pattern-texts">
-                <!-- Generated/filled by JS on load to match systemPatterns data -->
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-10 gap-8">
+            <!-- Left narrative - 30% width -->
+            <div class="lg:col-span-3 py-24 space-y-[60vh]" id="pattern-texts">
+                <!-- Generated pattern texts -->+
             </div>
 
             <!-- Right sticky viz -->
-            <div class="sticky top-[52px] h-[calc(100vh-52px)] flex items-center justify-center py-24">
-                <div class="w-full aspect-square bg-zinc-50 border border-zinc-100 flex items-center justify-center relative overflow-hidden" id="pattern-viz-container">
+            <div class="lg:col-span-7 sticky top-[52px] h-[calc(100vh-52px)] flex items-center justify-center py-24">
+                <div class="w-full h-full bg-zinc-50 border border-zinc-100 flex items-center justify-center relative overflow-hidden" 
+                 id="pattern-viz-container">
                     <div id="pattern-viz-1" class="pattern-viz absolute inset-0 flex items-center justify-center transition-all duration-700">
                         <svg id="svg-bar-chart" class="w-full h-full"></svg>
                     </div>
@@ -298,19 +364,19 @@
                 <blockquote class="text-lg italic text-zinc-800 leading-relaxed mb-6 border-l-2 border-red-600 pl-6">
                     "Amnesty International is deeply concerned by rising cases of extrajudicial execution by security agencies of Nigeria. The perpetrators always get away with the crime. This puts the right to life in grave danger nationwide."
                 </blockquote>
-                <cite class="mono text-[10px] text-zinc-400">- Isa Sanusi, Spokesperson, Amnesty International Nigeria</cite>
+                <cite class="mono text-[20px] text-zinc-500">- Isa Sanusi, Spokesperson, Amnesty International Nigeria</cite>
             </div>
 
             <div class="pt-12 md:pt-0">
                 <blockquote class="text-lg italic text-zinc-800 leading-relaxed mb-6 border-l-2 border-red-600 pl-6">
                     "The security forces have been getting away with something like this because no one has been able to hold them accountable. Most times when the military investigates serious cases of human rights abuses, we don't see enough outcome to warrant confidence."
                 </blockquote>
-                <cite class="mono text-[10px] text-zinc-400">- Malik Samuel, Good Governance Africa</cite>
+                <cite class="mono text-[20px] text-zinc-500">- Malik Samuel, Good Governance Africa</cite>
             </div>
         </div>
 
         <div class="max-w-3xl mx-auto px-6 mt-32">
-            <div class="border-t-4 border-zinc-900 p-12 bg-zinc-100">
+            <div class="border-t-4 border-red-900 p-12 bg-zinc-100">
                 <h3 class="mono text-sm font-bold uppercase mb-8 tracking-widest">Official Military Response</h3>
                 <div class="space-y-6 text-zinc-600 text-sm leading-relaxed font-mono">
                     <p>[Response requested from Nigerian Army Public Relations]</p>
@@ -324,9 +390,9 @@
     <section class="bg-white py-32 border-t border-zinc-200">
         <div class="max-w-2xl mx-auto px-6 text-center">
             <h2 class="editorial-title text-4xl mb-8">The Unbroken Pattern</h2>
-            <p class="text-xl leading-relaxed text-zinc-700 mb-6">Twenty-five years and twelve documented incidents reveal an unbroken pattern: disproportionate harm, official denial, and systematic accountability failure.</p>
-            <p class="text-xl leading-relaxed text-zinc-700 mb-6">Thousands of civilian casualties and multiple judicial findings have produced zero military prosecutions, suspended between military operations and political indifference.</p>
-            <p class="text-xl leading-relaxed text-zinc-700">From Odi to Lamurde, the Nigerian state's promise of protection has become a source of terror for its own citizens.</p>
+            <p class="editorial-title text-xl leading-relaxed text-zinc-700 mb-6 font-normal">Twenty-five years and twelve documented incidents reveal an unbroken pattern: disproportionate harm, official denial, and systematic accountability failure.</p>
+            <p class="editorial-title text-xl leading-relaxed text-zinc-700 mb-6 font-normal">Thousands of civilian casualties and multiple judicial findings have produced zero military prosecutions, suspended between military operations and political indifference.</p>
+            <p class="editorial-title text-xl leading-relaxed text-zinc-700">From Odi to Lamurde, the Nigerian state's promise of protection has become a source of terror for its own citizens.</p>
         </div>
     </section>
 
@@ -351,10 +417,11 @@
                         <li>Amnesty International Nigeria Reports (2000–2025)</li>
                         <li>Human Rights Watch Publications and Investigations</li>
                         <li>Premium Times Investigative Reports Archive</li>
-                        <li>The Cable Fact-Check Database</li>
+                        <li>The Cable Fact-Check</li>
                         <li>International Crisis Group Nigeria Analyses</li>
                         <li>UN Office for the Coordination of Humanitarian Affairs Data</li>
-                        <li>Satellite Imagery: Google Earth Pro, Maxar, Planet Labs</li>
+                        <li>Satellite Imagery: Sentinel Planet Labs, Google Earth pro</li>
+                        <li>Header image generated with Gemini</li>
                     </ul>
                 </div>
                 
@@ -383,10 +450,13 @@
                     <h4>Credits</h4>
                     <div class="credits-list">
                         <div class="credit-item">Data Analysis, Forensic Reporting, Visual Design & Development: Ibraheem Alawode</div>
+                        <div class="credit-item">Script Writer: Yousuph Akinpelu</div>
+                        <div class="credit-item">Video: Sodiq Ojurongbe</div>
                         <div class="credit-item">Editing: Lukman Abolade</div>
                         <div class="credit-item">Methodology Review: BusinessDay Investigations Desk</div>
                         <div class="credit-item"> Editorial Oversight: Chido Nwakanma</div>
-                        <div class="credit-item">Edior: Lolade Akinmurele</div>
+                        <div class="credit-item">Editor: Lolade Akinmurele</div>
+
                     </div>
                     </div>
                 </div>
@@ -412,7 +482,7 @@
                     </button>
                     
                     <button id="footer-share-linkedin" class="share-button linkedin" aria-label="Share on LinkedIn">
-                        <img src="images/Linkedin-icon.svg" alt="LinkedIn" width="18" height="18" class="brightness-90" onerror="this.style.display='none';">
+                        <img src="images/Linkedin.svg" alt="LinkedIn" width="18" height="18" class="brightness-90" onerror="this.style.display='none';">
                         <span>LinkedIn</span>
                     </button>
                 </div>
@@ -431,7 +501,7 @@
                             Forensic Analysis combines satellite imagery, human right public accounts, and cross-referenced documentation.
                         </p>
                         <p class="investigation-note">
-                            Investigation by BusinessDay Investigations Desk
+                            BusinessDay Investigations Desk
                         </p>
                     </div>
                 </div>
