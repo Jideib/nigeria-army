@@ -84,7 +84,7 @@ const INCIDENTS = [
     { id: "okporo-2021", year: 2021, location: "Okporo, Imo", title: "Okporo Raid", casualties: "5", coords: [5.7860, 6.9800], desc: "Military raid in ESN zone targeting IPOB/ESN." },
     { id: "izombe-2021", year: 2021, location: "Izombe, Imo", title: "Izombe Reprisal", casualties: "3", coords: [5.6262, 6.8691], desc: "Reprisal after soldiers killed; 50+ houses burned." },
     { id: "amangwu-2022", year: 2022, location: "Amangwu, Abia", title: "Amangwu Attack", casualties: "10", coords: [5.3961, 7.8832], desc: "Homes razed; missing soldier trigger for military operation." },
-    { id: "lamurde-2025", year: 2025, location: "Lamurde, Adamawa", title: "Lamurde Killings", casualties: "9", coords: [9.6000, 11.7833], desc: "Nine women shot during protest. Military denies responsibility." }
+    { id: "lamurde-2025", year: 2025, location: "Lamurde, Adamawa", title: "Lamurde Killings", casualties: "8", coords: [9.6000, 11.7833], desc: "Nine women shot during protest. Military denies responsibility." }
 ].map(inc => {
     // Ensuring the projection uses [0] as Latitude and [1] as Longitude
     const p = project(inc.coords[0], inc.coords[1]); 
@@ -187,6 +187,7 @@ const SYSTEM_PATTERNS = [
 ];
 
 // Forensic rail cases data
+// Full Forensic Rail Cases Data - Verified January 2026
 const FORENSIC_CASES = [
     {
         id: "intro",
@@ -211,10 +212,10 @@ const FORENSIC_CASES = [
         official: "Military operation against militants following killing of police officers",
         evidence: "Satellite imagery shows 250+ structures destroyed. Human Rights Watch documents 900+ civilian deaths. Mass grave identified 2km from village. Journalists documented near-total destruction.",
         sources: [
-            { text: "Human Rights Watch Report", url: "https://www.hrw.org/reports/2003/nigeria1103/nigeria1103.pdf" },
-            { text: "Amnesty International investigation", url: "https://www.amnesty.org/en/latest/news/1999/11/nigeria-villagers-killed-in-military-attack/" },
-            { text: "BBC News coverage", url: "https://news.bbc.co.uk/2/hi/africa/530174.stm" },
-            { text: "The Guardian investigation", url: "https://www.theguardian.com/world/1999/dec/01/1" }
+            { text: "Amnesty: Nigeria - Time for Justice (PDF)", url: "https://www.amnesty.org/en/wp-content/uploads/2021/06/afr440142000en.pdf" },
+            { text: "Human Rights Watch: The Destruction of Odi", url: "https://www.hrw.org/report/1999/12/22/destruction-odi/military-reprisal-bayelsa-state" },
+            { text: "BBC News: Odi Military Attack", url: "http://news.bbc.co.uk/2/hi/africa/530174.stm" },
+            { text: "The Guardian: Nigerian village wiped out", url: "https://www.theguardian.com/world/1999/dec/01/1" }
         ],
         bgColor: "bg-white"
     },
@@ -229,16 +230,16 @@ const FORENSIC_CASES = [
         after: "images/forensic/zaki-biam-after.jpg",
         beforeCaption: "Zaki-Biam community before military operation",
         afterCaption: "Burned structures affected the vegetation area after military operation",
-        imageAnalysis: "Aerial imagery shows multiple Tiv communities systematically targeted. Burn patterns consistent with intentional arson changes vegetation. Satellite imagery reveals widespread destruction across residential areas rather than isolated combat zones. Ground reports confirm mass executions following 'peace meetings'.",
+        imageAnalysis: "Aerial imagery shows multiple Tiv communities systematically targeted. Burn patterns consistent with intentional arson changes vegetation. Satellite imagery reveals widespread destruction across residential areas rather than isolated combat zones.",
         imageCredits: "Before: Landsat 7 satellite imagery, October 2001 / After: Landsat 7 satellite imagery, November 2001",
-        summary: "Over 200 unarmed civilians killed. Villagers assembled for 'peace meetings' then executed. Homes systematically burned across multiple communities.",
-        official: "Lawful operation following killing of 19 soldiers. Targeted 'militants' and 'troublemakers'. Denied deliberate civilian targeting.",
-        evidence: "Villagers assembled for 'peace meetings' then executed. Over 200 unarmed civilians killed. Homes systematically burned across multiple communities. Witness testimony of planned executions.",
+        summary: "Over 200 unarmed civilians killed. Villagers assembled for 'peace meetings' then executed.",
+        official: "Lawful operation following killing of 19 soldiers. Targeted 'militants'.",
+        evidence: "Villagers assembled for 'peace meetings' then executed. Over 200 unarmed civilians killed. Witness testimony of planned executions.",
         sources: [
-            { text: "Human Rights Watch report - 'Jos: A City Torn Apart'", url: "https://www.hrw.org/reports/2001/nigeria/" },
-            { text: "The Guardian investigation", url: "https://www.theguardian.com/world/2001/oct/27/2" },
-            { text: "Amnesty International documentation", url: "https://www.amnesty.org/en/documents/afr44/021/2001/en/" },
-            { text: "BBC News coverage", url: "https://news.bbc.co.uk/2/hi/africa/1623498.stm" }
+            { text: "Amnesty: Killings by Government Soldiers", url: "https://www.amnesty.org/en/documents/afr44/006/2001/en/" },
+            { text: "Human Rights Watch: Military Revenge in Benue", url: "https://www.hrw.org/reports/2002/nigeria/" },
+            { text: "The Guardian: Soldiers kill hundreds", url: "https://www.theguardian.com/world/2001/oct/25/1" },
+            { text: "BBC News: Army 'killed 200' in Benue", url: "http://news.bbc.co.uk/2/hi/africa/1615591.stm" }
         ],
         bgColor: "bg-zinc-50"
     },
@@ -253,16 +254,16 @@ const FORENSIC_CASES = [
         after: "images/forensic/baga-after.jpg",
         beforeCaption: "Baga fishing community before military operations - April 2013",
         afterCaption: "Mass destruction of Baga after joint military operation - May 2013",
-        imageAnalysis: "High-resolution satellite imagery reveals unprecedented scale of destruction. Approximately 2,300+ buildings destroyed, representing over 70% of structures. Scorch patterns concentrated in residential areas rather than combat zones. Fishing boats and market infrastructure specifically targeted, indicating economic warfare against civilian population.",
+        imageAnalysis: "Satellite imagery shows how the town was deserted aftwe the incident",
         imageCredits: "Before: Landsat 7 satellite imagery, January 2013 / After: Landsat 7 satellite imagery, April 2013",
-        summary: "185+ civilian deaths. 2,300+ buildings destroyed. Satellite-era evidence contradicts official narrative.",
-        official: "Operation against Boko Haram militants. Claimed only militants targeted. Minimal civilian damage asserted.",
-        evidence: "Satellite imagery shows 2,300+ buildings destroyed. Scorch patterns inside residential grid, not combat zones. Fishermen and traders among the dead. Local accounts contradict official timeline.",
+        summary: "185+ civilian deaths. 2,300+ buildings destroyed. Satellite evidence contradicts official narrative.",
+        official: "Operation against Boko Haram. Minimal civilian damage asserted.",
+        evidence: "Satellite imagery shows 2,300+ buildings destroyed. Scorch patterns inside residential grid. Local accounts contradict official timeline.",
         sources: [
-            { text: "Amnesty International satellite analysis", url: "https://www.amnesty.org/en/latest/news/2013/05/nigeria-war-crimes-and-crimes-against-humanity-as-boko-haram-unleashes-terror/" },
-            { text: "Human Rights Watch investigation", url: "https://www.hrw.org/reports/2013/05/01/nigeria-war-crimes-and-crimes-against-humanity" },
-            { text: "BBC News satellite evidence", url: "https://www.bbc.com/news/world-africa-22619282" },
-            { text: "Premium Times investigation", url: "https://www.premiumtimesng.com/news/135147-breaking-1200-people-killed-as-soldiers-boko-haram-clash-in-baga.html" }
+            { text: "Amnesty: Satellite imagery evidence", url: "https://www.amnesty.org/en/latest/news/2013/05/nigeria-satellite-images-show-massive-destruction-baga-military-raid/" },
+            { text: "Human Rights Watch: Baga Investigation", url: "https://www.hrw.org/news/2013/05/01/nigeria-star-satellite-images-show-massive-baga-destruction" },
+            { text: "BBC News: Baga Satellite evidence", url: "https://www.bbc.com/news/world-africa-22619282" },
+            { text: "Premium Times: Baga massacre investigation", url: "https://www.premiumtimesng.com/news/131587-exclusive-how-military-raided-baga-killed-185-residents.html" }
         ],
         bgColor: "bg-white"
     },
@@ -277,16 +278,15 @@ const FORENSIC_CASES = [
         after: "images/forensic/giwa-after.png",
         beforeCaption: "Giwa Barracks detention facility - March 2014",
         afterCaption: "Evidence of mass executions and body disposal - March 2014",
-        imageAnalysis: "Satellite imagery shows mass grave sites within barracks perimeter. Bodies of victims killed in executions.",
+        imageAnalysis: "Satellite imagery shows mass grave sites within barracks perimeter. Video evidence verified showing summary executions.",
         imageCredits: "Satellite analysis and images from Amnesty International report",
-        summary: "640+ recaptured detainees executed. Video evidence verified showing summary executions. Systematic killing under custody.",
-        official: "Detainees were 'hardcore terrorists'. Denied extrajudicial executions. Claimed detainees died in crossfire.",
-        evidence: "Amnesty documented 640+ recaptured detainees executed. Video evidence verified showing summary executions. Bodies dumped in mass piles visible in satellite imagery. Survivor testimonies of systematic killings.",
+        summary: "640+ recaptured detainees executed. Systematic killing under custody.",
+        official: "Detainees were 'hardcore terrorists'. Claimed detainees died in crossfire.",
+        evidence: "Amnesty documented 640+ recaptured detainees executed. Bodies dumped in mass piles visible in satellite imagery.",
         sources: [
-            { text: "Amnesty International 'Stars on their Shoulders' report", url: "https://www.amnesty.org/en/documents/afr44/021/2015/en/" },
-            { text: "CNN video investigation", url: "https://www.cnn.com/2014/03/14/world/africa/nigeria-video-executions/index.html" },
-            { text: "Human Rights Watch follow-up", url: "https://www.hrw.org/news/2015/06/03/nigeria-massacre-investigation-needed-giwa-barracks" },
-            { text: "The Guardian coverage", url: "https://www.theguardian.com/world/2014/mar/17/nigeria-boko-haram-executions-giwa-barracks-maiduguri" }
+            { text: "Amnesty: Stars on Their Shoulders (Index: AFR 44/1657/2015)", url: "https://www.amnesty.org/en/documents/afr44/1657/2015/en/" },
+            { text: "CNN: Video shows soldiers executing detainees", url: "https://www.cnn.com/2014/08/05/world/africa/nigeria-video-executions-amnesty/index.html" },
+            { text: "The Guardian: Giwa Barracks executions", url: "https://www.theguardian.com/world/2014/mar/31/nigeria-military-killed-hundreds-boko-haram-giwa-barracks" }
         ],
         bgColor: "bg-zinc-50"
     },
@@ -301,20 +301,18 @@ const FORENSIC_CASES = [
         after: "images/forensic/bama-after.png",
         beforeCaption: "Bama town during military screening operation - May 2014",
         afterCaption: "Bodies of victims killed - June 2014",
-        imageAnalysis: "imagery shows bodies of victims killed during screening operations.",
-        imageCredits: "Amnesty Internation Investigation report",
-        summary: "Hundreds of men executed after 'screening'. Mass graves discovered by locals. Screening operations used as cover for executions.",
-        official: "Counter-terror screening operation. No civilian casualties reported. Lawful detention of suspects claimed.",
-        evidence: "Men rounded up during 'screening' never returned. Residents executed near barracks perimeter. Burn patterns visible in satellite imagery. Mass graves discovered by locals.",
+        imageAnalysis: "Imagery shows bodies of victims killed during screening operations near barracks perimeter.",
+        imageCredits: "Amnesty International Investigation report",
+        summary: "Hundreds executed after 'screening'. Mass graves discovered by locals.",
+        official: "Counter-terror screening operation. No civilian casualties reported.",
+        evidence: "Men rounded up during 'screening' never returned. Burn patterns visible in satellite imagery.",
         sources: [
-            { text: "Human Rights Watch investigation", url: "https://www.hrw.org/news/2014/05/01/nigeria-rampant-killings-pillage-boko-haram" },
-            { text: "Amnesty International satellite analysis", url: "https://www.amnesty.org/en/latest/news/2014/05/nigeria-military-must-end-unlawful-killings-during-boko-haram-counter-insurgency/" },
-            { text: "BBC News report", url: "https://www.bbc.com/news/world-africa-27245591" },
-            { text: "Vanguard newspaper investigation", url: "https://www.vanguardngr.com/2014/05/400-civilians-killed-bama-army-allegedly-buried-mass-grave/" }
+            { text: "Amnesty: Military must end killings", url: "https://www.amnesty.org/en/latest/news/2014/05/nigeria-military-must-end-unlawful-killings-during-boko-haram-counter-insurgency/" },
+            { text: "Human Rights Watch: Nigeria rampant killings", url: "https://www.hrw.org/news/2014/05/01/nigeria-rampant-killings-pillage-boko-haram" },
+            { text: "BBC News: Bama screening report", url: "https://www.bbc.com/news/world-africa-27245591" }
         ],
         bgColor: "bg-white"
     },
-    
     {
         id: "lamurde-2025",
         type: "conclusion",
@@ -322,16 +320,14 @@ const FORENSIC_CASES = [
         title: "Lamurde - The Pattern Continues",
         location: "Lamurde, Adamawa State",
         casualties: 9,
-        before: "images/forensic/lamurde-before.jpg",
-        after: "images/forensic/lamurde-after.jpg",
-        summary: "9 unarmed women shot during protest. Video shows uniform firing pattern. Shifting blame to non-state actors while evidence points to military.",
-        official: "Casualties caused by untrained militias. Army not involved in shooting. Protest turned violent.",
-        evidence: "Amnesty: unarmed women shot during protest. Video shows uniform firing pattern contradicting militia claim. Eyewitness accounts point to military involvement. Medical reports show military-grade wounds.",
+        summary: "8 unarmed women shot during protest. Video shows uniform firing pattern.",
+        official: "Casualties caused by untrained militias. Army not involved.",
+        evidence: "Video shows uniform firing pattern contradicting militia claim. Medical reports show military-grade wounds.",
         sources: [
-            { text: "Amnesty International report", url: "https://www.amnesty.org/en/latest/news/2025/01/nigeria-adamawa-shooting/" },
-            { text: "Daily Trust investigation", url: "https://dailytrust.com/how-soldiers-killed-nine-protesting-women-in-adamawa/" },
-            { text: "Premium Times video analysis", url: "https://www.premiumtimesng.com/news/headlines/679175-video-shows-soldiers-shooting-at-protesters-in-adamawa-community.html" },
-            { text: "International Centre for Investigative Reporting", url: "https://www.icirnigeria.org/army-disclaims-responsibility-for-killing-of-nine-women-in-adamawa/" }
+            { text: "HumAngle: 8 Unarmed Protesters Dead in Adamawa", url: "https://humanglemedia.com/8-unarmed-protesters-dead-16-injured-in-nigerias-adamawa-state/" },
+            { text: "Daily Trust: How soldiers killed nine women", url: "https://dailytrust.com/how-soldiers-killed-nine-protesting-women-in-adamawa/" },
+            { text: "Genocide Watch: Troops shoot anti-terrorist protesters", url: "https://www.genocidewatch.com/single-post/nigerian-troops-shoot-anti-terrorist-protesters" },
+            { text: "Nigeria Info: Amnesty Demands Probe", url: "https://www.nigeriainfo.fm/news/national/amnesty-international-demands-probe-into-military-killing-of-protesters-in-adamawa/" }
         ],
         conclusion: "Twenty-five years. The pattern remains unbroken."
     }
