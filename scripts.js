@@ -84,7 +84,7 @@ const FORENSIC_CASES = [
         after: "images/forensic/odi-after.jpg",
         beforeCaption: "Odi village before military operation - August 1999",
         afterCaption: "Complete destruction after military reprisal - November 1999",
-        imageAnalysis: "Satellite imagery comparison shows near-total destruction of Odi village. Before images show the thermal level of the community, being a riverine community, the blue color shows the natural order of things. After images reveal thermal level changed to red which indicates systematic burning and demolition of buildings and infrastructure.",
+        imageAnalysis: "Before image shows the thermal level of the community, being a riverine community, the blue color. After images reveal thermal level changed to red",
         imageCredits: "Before: Landsat 7 satellite imagery Thermal level, August 1999 / After: Landsat 7 satellite imagery Thermal level, November 1999",
         summary: "900+ civilian deaths. 250+ structures destroyed. The military operation that set the pattern for decades to come.",
         official: "Military operation against militants following killing of police officers",
